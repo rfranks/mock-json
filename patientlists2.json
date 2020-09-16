@@ -1,0 +1,325 @@
+[{
+			"patientListId": 10405,
+			"name": "Attending 1",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10403
+		}, {
+			"patientListId": 10406,
+			"name": "Attending 2",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10403
+		}, {
+			"patientListId": 10407,
+			"name": "Attending 3",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10403
+		}, {
+			"patientListId": 10408,
+			"name": "Attending 4",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10403
+		}, {
+			"patientListId": 10409,
+			"name": "Attending 5",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10403
+		}, {
+			"patientListId": 10410,
+			"name": "Attending 6",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10403
+		}, {
+			"patientListId": 10411,
+			"name": "Attending 7",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10403
+		}, {
+			"patientListId": 10412,
+			"name": "Attending 8",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10403
+		}, {
+			"patientListId": 1408,
+			"name": "chandras patient list",
+			"description": null,
+			"listType": "LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": null
+		}, {
+			"patientListId": 203,
+			"name": "City Patients_13572de",
+			"description": "Patients that I have a relationship to 123456asdf",
+			"listType": "LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "162534",
+				"label": "DEV0, PK"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": null
+		}, {
+			"patientListId": 10403,
+			"name": "Hospitalist Team",
+			"description": null,
+			"listType": "ASSIGNMENT",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": true,
+			"parentpatientListId": null
+		}, {
+			"patientListId": 6553,
+			"name": "myplist",
+			"description": null,
+			"listType": "LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": null
+		}, {
+			"patientListId": 6911,
+			"name": "name test",
+			"description": null,
+			"listType": "LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": null
+		}, {
+			"patientListId": 955,
+			"name": "Recent Patients",
+			"description": "Recent Patients",
+			"listType": "RECENT_PATIENTS",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": null
+		}, {
+			"patientListId": 10415,
+			"name": "Resident A",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10413
+		}, {
+			"patientListId": 10416,
+			"name": "Resident B1",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10413
+		}, {
+			"patientListId": 10417,
+			"name": "Resident C",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10413
+		}, {
+			"patientListId": 10418,
+			"name": "Resident D",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10413
+		}, {
+			"patientListId": 10419,
+			"name": "Resident E",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10413
+		}, {
+			"patientListId": 10420,
+			"name": "Resident F",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10413
+		}, {
+			"patientListId": 10521,
+			"name": "Resident G",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10413
+		}, {
+			"patientListId": 9241,
+			"name": "Stacey's list",
+			"description": null,
+			"listType": "LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": null
+		}, {
+			"patientListId": 3794,
+			"name": "test",
+			"description": null,
+			"listType": "LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": null
+		}, {
+			"patientListId": 12756,
+			"name": "test-90",
+			"description": "de",
+			"listType": "LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": null
+		}, {
+			"patientListId": 7271,
+			"name": "test-dev74672",
+			"description": null,
+			"listType": "LIST",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": null
+		}, {
+			"patientListId": 10404,
+			"name": "Unassigned - Hospitalist Team",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST_UNASSIGNED",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10403
+		}, {
+			"patientListId": 10414,
+			"name": "Unassigned(2) - Hospitalist Team",
+			"description": "SubList on Hospitalist Team",
+			"listType": "SUB_LIST_UNASSIGNED",
+			"allowsAddRemove": true,
+			"listOwner": {
+				"value": "311689",
+				"label": "LEADBEATER, STACEY"
+			},
+			"secondaryEnabled": false,
+			"parentpatientListId": 10413
+		}]

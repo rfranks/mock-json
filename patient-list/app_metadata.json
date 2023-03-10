@@ -1,0 +1,862 @@
+{
+  "__typename": "App",
+  "type": "App",
+  "displayName": "patient-list",
+  "props": {
+    "paths": ["/patient-list"],
+    "org": "commure",
+    "pkg": "patient-list",
+    "appName": "Patient List",
+    "appId": "25b4c220-92ef-45d0-82c8-c6f883b82693",
+    "appNavigatorLabel": "Patient List",
+    "icon": "AccountBox",
+    "shortName": "pat_list",
+    "isDefault": true,
+    "appType": "UI",
+    "title": "Patient List",
+    "children": [
+      {
+        "__typename": "Page",
+        "type": "Page",
+        "props": {
+          "paths": ["/patients"],
+          "title": "Patients",
+          "pageIcon": "Person",
+          "children": [
+            {
+              "__typename": "PageHeader",
+              "type": "PageHeader",
+              "props": {
+                "title": {
+                  "__typename": "Text",
+                  "type": "Text",
+                  "props": {
+                    "text": "Patients",
+                    "textStyle": "Heading.H3",
+                    "sx": {
+                      "fontWeight": "FontWeight.Regular",
+                      "lineHeight": "LineHeight.M",
+                      "padding": "Global.Spacing.50.value"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "__typename": "Box",
+              "type": "Box",
+              "props": {
+                "sx": {
+                  "backgroundColor": "Global.Neutral.0.value",
+                  "height": "calc(100vh - 165px)"
+                },
+                "children": [
+                  {
+                    "__typename": "Table",
+                    "type": "Table",
+                    "dataPath": "patients.edges",
+                    "state": {
+                      "storage": "nav",
+                      "pathsToPersist": [
+                        "queries.[0].props.variables",
+                        "filterItems",
+                        "filterSet",
+                        "pagination",
+                        "sorting"
+                      ]
+                    },
+                    "props": {
+                      "title": "Patients",
+                      "queries": [
+                        {
+                          "id": "GetPatientsQuery",
+                          "props": {
+                            "definition": "query dataQueries__GetPatientsQuery($filter: PatientFilter, $first: Int, $offset: Int, $orderBy: [PatientsOrderBy!]) { patients( first: $first offset: $offset orderBy: $orderBy filter: $filter ) { totalCount edges { node { id familyName givenName gender mrn birthDate } } } }",
+                            "variables": {
+                              "first": 25,
+                              "orderBy": "FAMILY_NAME_ASC"
+                            }
+                          }
+                        }
+                      ],
+                      "layout": {
+                        "padding": 2.9
+                      },
+                      "hideColumnsVisibility": false,
+                      "hideVisualDensity": true,
+                      "filters": {
+                        "filtersId": "patients.table.filters",
+                        "enabled": true,
+                        "maxFilterRules": 6
+                      },
+                      "suspense": {
+                        "__typename": "TableSuspense",
+                        "type": "TableSuspense",
+                        "props": {
+                          "height": "100%"
+                        }
+                      },
+                      "columns": [
+                        {
+                          "__typename": "Column",
+                          "type": "Column",
+                          "props": {
+                            "title": "Last Name",
+                            "dataType": "string",
+                            "fieldName": "familyName",
+                            "children": [
+                              {
+                                "__typename": "Box",
+                                "type": "Box",
+                                "dataPath": "node.familyName"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "__typename": "Column",
+                          "type": "Column",
+                          "props": {
+                            "title": "First Name",
+                            "dataType": "string",
+                            "fieldName": "givenName",
+                            "children": [
+                              {
+                                "__typename": "Box",
+                                "type": "Box",
+                                "dataPath": "node.givenName"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "__typename": "Column",
+                          "type": "Column",
+                          "props": {
+                            "title": "MRN",
+                            "dataType": "string",
+                            "fieldName": "mrn",
+                            "children": [
+                              {
+                                "__typename": "Link",
+                                "type": "Link",
+                                "dataPath": "node.mrn",
+                                "props": {
+                                  "transformers": [
+                                    {
+                                      "__typename": "template",
+                                      "type": "template",
+                                      "props": {
+                                        "arguments": {
+                                          "template": "/patient-list/patient-detail?id={{data.node.id}}",
+                                          "returnKey": "data.url"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "__typename": "Column",
+                          "type": "Column",
+                          "props": {
+                            "title": "DOB",
+                            "dataType": "date",
+                            "fieldName": "birthDate",
+                            "children": [
+                              {
+                                "__typename": "Box",
+                                "type": "Box",
+                                "dataPath": "node.birthDate"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "__typename": "Column",
+                          "type": "Column",
+                          "props": {
+                            "title": "Gender",
+                            "dataType": "string",
+                            "fieldName": "gender",
+                            "children": [
+                              {
+                                "__typename": "Box",
+                                "type": "Box",
+                                "dataPath": "node.gender"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "__typename": "Page",
+        "type": "Page",
+        "props": {
+          "paths": [
+            {
+              "url": "/patient-detail",
+              "navigable": false
+            }
+          ],
+          "title": "Patient Detail",
+          "queries": [
+            {
+              "id": "PatientDetailQuery",
+              "props": {
+                "definition": "query dataQueries__PatientDetailQuery($patientId: UUID!) { patient(id: $patientId) { id addressLine addressCity addressState addressCountry addressPostalCode birthDate communicationLanguage contactAddressLine contactAddressCity contactAddressState contactAddressCountry contactAddressPostalCode contactName contactRelationship contactTelecom deceasedIndicator deceasedDateTime familyName gender givenName link maritalStatus mrn namePrefix nameSuffix photo smokingStatus } }",
+                "requireVariables": true
+              }
+            }
+          ],
+          "transformers": [
+            {
+              "__typename": "javascript",
+              "type": "javascript",
+              "props": {
+                "arguments": {
+                  "script": "return props?.context?.router?.searchParams?.id;",
+                  "returnKey": "queries[0].props.variables.patientId"
+                }
+              }
+            }
+          ],
+          "children": [
+            {
+              "__typename": "PageHeader",
+              "type": "PageHeader",
+              "props": {
+                "title": {
+                  "__typename": "Text",
+                  "type": "Text",
+                  "props": {
+                    "textStyle": "Heading.H3",
+                    "sx": {
+                      "fontWeight": "FontWeight.Regular",
+                      "lineHeight": "LineHeight.M",
+                      "padding": "Global.Spacing.50.value"
+                    },
+                    "transformers": [
+                      {
+                        "__typename": "template",
+                        "type": "template",
+                        "props": {
+                          "arguments": {
+                            "template": "{{data.patient.familyName}}, {{data.patient.givenName}} ({{data.patient.mrn}})",
+                            "returnKey": "text"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "__typename": "Box",
+              "type": "Box",
+              "props": {
+                "sx": {
+                  "backgroundColor": "Global.Neutral.0.value",
+                  "minHeight": "100%",
+                  "overflow": "overlay",
+                  "padding": "Global.Spacing.50.value"
+                },
+                "children": [
+                  {
+                    "__typename": "InfoList",
+                    "type": "InfoList",
+                    "props": {
+                      "sx": {
+                        "maxWidth": 568
+                      },
+                      "transformers": [
+                        {
+                          "__typename": "javascript",
+                          "type": "javascript",
+                          "props": {
+                            "arguments": {
+                              "script": "const {\n  id,\n  addressLine,\n  addressCity,\n  addressState,\n  addressCountry,\n  addressPostalCode,\n  birthDate,\n  communicationLanguage,\n  contactAddressLine,\n  contactAddressCity,\n  contactAddressState,\n  contactAddressCountry,\n  contactAddressPostalCode,\n  contactName,\n  contactRelationship,\n  contactTelecom,\n  deceasedIndicator,\n  deceasedDateTime,\n  familyName,\n  gender,\n  givenName,\n  link,\n  maritalStatus,\n  mrn,\n  namePrefix,\n  nameSuffix,\n  photo,\n  smokingStatus,\n} = props.data?.patient || {};\nif (!id) return [];\nreturn [\n  {\n    label: 'Name Prefix',\n    text: namePrefix,\n  },\n  {\n    label: 'Given Name',\n    text: givenName,\n  },\n  {\n    label: 'Name Suffix',\n    text: nameSuffix,\n  },\n  {\n    label: 'Family Name',\n    text: familyName,\n  },\n  {\n    label: 'MRN',\n    text: mrn,\n  },\n  {\n    label: 'DOB',\n    text: birthDate ? dayjs(birthDate).format('MM/DD/YYYY') : '',\n  },\n  {\n    label: 'Gender',\n    text: gender,\n  },\n  {\n    label: 'Communication Language',\n    text: communicationLanguage,\n  },\n  {\n    label: 'Address Line',\n    text: addressLine,\n  },\n  {\n    label: 'Address City',\n    text: addressCity,\n  },\n  {\n    label: 'Address State',\n    text: addressState,\n  },\n  {\n    label: 'Address Country',\n    text: addressCountry,\n  },\n  {\n    label: 'Address Postal Code',\n    text: addressPostalCode,\n  },\n  {\n    label: 'Smoking Status',\n    text: smokingStatus,\n  },\n  {\n    label: 'Marital Status',\n    text: maritalStatus,\n  },\n  {\n    label: 'Deceased Indicator',\n    text: deceasedIndicator,\n  },\n  {\n    label: 'Deceased DateTime',\n    text: deceasedDateTime,\n  },\n  {\n    label: 'Contact Name',\n    text: contactName,\n  },\n  {\n    label: 'Contact Relationship',\n    text: contactRelationship,\n  },\n  {\n    label: 'Contact Address Line',\n    text: contactAddressLine,\n  },\n  {\n    label: 'Contact Address City',\n    text: contactAddressCity,\n  },\n  {\n    label: 'Contact Address State',\n    text: contactAddressState,\n  },\n  {\n    label: 'Contact Address Country',\n    text: contactAddressCountry,\n  },\n  {\n    label: 'Contact Address Postal Code',\n    text: contactAddressPostalCode,\n  },\n  {\n    label: 'Contact Telecom',\n    text: contactTelecom,\n  },\n  {\n    label: 'Photo',\n    text: photo,\n    multiline: true,\n  },\n  {\n    label: 'Link',\n    text: link,\n    multiline: true,\n  },\n];\n",
+                              "returnKey": "itemsList"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "__typename": "Page",
+        "type": "Page",
+        "props": {
+          "paths": ["/providers"],
+          "title": "Providers",
+          "pageIcon": "MedicalInformation",
+          "children": [
+            {
+              "__typename": "PageHeader",
+              "type": "PageHeader",
+              "props": {
+                "title": {
+                  "__typename": "Text",
+                  "type": "Text",
+                  "props": {
+                    "text": "Providers",
+                    "textStyle": "Heading.H3",
+                    "sx": {
+                      "fontWeight": "FontWeight.Regular",
+                      "lineHeight": "LineHeight.M",
+                      "padding": "Global.Spacing.50.value"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "__typename": "Box",
+              "type": "Box",
+              "props": {
+                "sx": {
+                  "backgroundColor": "Global.Neutral.0.value",
+                  "height": "calc(100vh - 165px)"
+                },
+                "children": [
+                  {
+                    "__typename": "Table",
+                    "type": "Table",
+                    "dataPath": "providers.edges",
+                    "state": {
+                      "storage": "nav",
+                      "pathsToPersist": [
+                        "queries.[0].props.variables",
+                        "filterItems",
+                        "filterSet",
+                        "pagination",
+                        "sorting"
+                      ]
+                    },
+                    "props": {
+                      "title": "Providers",
+                      "queries": [
+                        {
+                          "id": "GetProvidersQuery",
+                          "props": {
+                            "definition": "query dataQueries__GetProvidersQuery($filter: ProviderFilter, $first: Int, $offset: Int, $orderBy: [ProvidersOrderBy!]) { providers( first: $first offset: $offset orderBy: $orderBy filter: $filter ) { totalCount edges { node { id familyName givenName mobileNumber slackUsername email } } } }",
+                            "variables": {
+                              "first": 25,
+                              "orderBy": "FAMILY_NAME_ASC"
+                            }
+                          }
+                        }
+                      ],
+                      "layout": {
+                        "padding": 2.9
+                      },
+                      "hideColumnsVisibility": false,
+                      "hideVisualDensity": true,
+                      "filters": {
+                        "filtersId": "providers.table.filters",
+                        "enabled": true,
+                        "maxFilterRules": 6
+                      },
+                      "suspense": {
+                        "__typename": "TableSuspense",
+                        "type": "TableSuspense",
+                        "props": {
+                          "height": "100%"
+                        }
+                      },
+                      "columns": [
+                        {
+                          "__typename": "Column",
+                          "type": "Column",
+                          "props": {
+                            "title": "Last Name",
+                            "dataType": "string",
+                            "fieldName": "familyName",
+                            "children": [
+                              {
+                                "__typename": "Link",
+                                "type": "Link",
+                                "dataPath": "node.familyName",
+                                "props": {
+                                  "transformers": [
+                                    {
+                                      "__typename": "template",
+                                      "type": "template",
+                                      "props": {
+                                        "arguments": {
+                                          "template": "/patient-list/provider-detail?id={{data.node.id}}",
+                                          "returnKey": "data.url"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "__typename": "Column",
+                          "type": "Column",
+                          "props": {
+                            "title": "First Name",
+                            "dataType": "string",
+                            "fieldName": "givenName",
+                            "children": [
+                              {
+                                "__typename": "Box",
+                                "type": "Box",
+                                "dataPath": "node.givenName"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "__typename": "Column",
+                          "type": "Column",
+                          "props": {
+                            "title": "Phone Number",
+                            "dataType": "string",
+                            "fieldName": "mobileNumber",
+                            "children": [
+                              {
+                                "__typename": "Box",
+                                "type": "Box",
+                                "dataPath": "node.mobileNumber"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "__typename": "Column",
+                          "type": "Column",
+                          "props": {
+                            "title": "Slack Username",
+                            "dataType": "string",
+                            "fieldName": "slackUsername",
+                            "children": [
+                              {
+                                "__typename": "Box",
+                                "type": "Box",
+                                "dataPath": "node.slackUsername"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "__typename": "Column",
+                          "type": "Column",
+                          "props": {
+                            "title": "Email",
+                            "dataType": "string",
+                            "fieldName": "email",
+                            "children": [
+                              {
+                                "__typename": "Box",
+                                "type": "Box",
+                                "dataPath": "node.email"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "__typename": "Page",
+        "type": "Page",
+        "props": {
+          "paths": [
+            {
+              "url": "/provider-detail",
+              "navigable": false
+            }
+          ],
+          "title": "Provider Detail",
+          "queries": [
+            {
+              "id": "ProviderDetailQuery",
+              "props": {
+                "definition": "query dataQueries__ProviderDetailQuery($providerId: UUID!) { provider(id: $providerId) { id addressLine addressCity addressState addressCountry addressPostalCode birthDate email familyName gender givenName mobileNumber namePrefix nameSuffix photo qualificationCode qualificationPeriod slackUsername telecomRank telecomSystem telecomUse telecomValue } }",
+                "requireVariables": true
+              }
+            }
+          ],
+          "transformers": [
+            {
+              "__typename": "javascript",
+              "type": "javascript",
+              "props": {
+                "arguments": {
+                  "script": "return props?.context?.router?.searchParams?.id;",
+                  "returnKey": "queries[0].props.variables.providerId"
+                }
+              }
+            }
+          ],
+          "children": [
+            {
+              "__typename": "PageHeader",
+              "type": "PageHeader",
+              "props": {
+                "title": {
+                  "__typename": "Text",
+                  "type": "Text",
+                  "props": {
+                    "textStyle": "Heading.H3",
+                    "sx": {
+                      "fontWeight": "FontWeight.Regular",
+                      "lineHeight": "LineHeight.M",
+                      "padding": "Global.Spacing.50.value"
+                    },
+                    "transformers": [
+                      {
+                        "__typename": "template",
+                        "type": "template",
+                        "props": {
+                          "arguments": {
+                            "template": "{{data.provider.familyName}}, {{data.provider.givenName}} ({{data.provider.email}})",
+                            "returnKey": "text"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "__typename": "Box",
+              "type": "Box",
+              "props": {
+                "sx": {
+                  "backgroundColor": "Global.Neutral.0.value",
+                  "minHeight": "100%",
+                  "overflow": "overlay",
+                  "padding": "Global.Spacing.50.value"
+                },
+                "children": [
+                  {
+                    "__typename": "InfoList",
+                    "type": "InfoList",
+                    "props": {
+                      "sx": {
+                        "maxWidth": 568
+                      },
+                      "transformers": [
+                        {
+                          "__typename": "javascript",
+                          "type": "javascript",
+                          "props": {
+                            "arguments": {
+                              "script": "const {\n  id,\n  addressLine,\n  addressCity,\n  addressState,\n  addressCountry,\n  addressPostalCode,\n  birthDate,\n  email,\n  familyName,\n  gender,\n  givenName,\n  mobileNumber,\n  namePrefix,\n  nameSuffix,\n  photo,\n  qualificationCode,\n  qualificationPeriod,\n  slackUsername,\n  telecomRank,\n  telecomSystem,\n  telecomUse,\n  telecomValue,\n} = props.data?.provider || {};\nif (!id) return [];\nreturn [\n  {\n    label: 'Given Name',\n    text: givenName,\n  },\n  {\n    label: 'Family Name',\n    text: familyName,\n  },\n  {\n    label: 'Name Prefix',\n    text: namePrefix,\n  },\n  {\n    label: 'Name Suffix',\n    text: nameSuffix,\n  },\n  {\n    label: 'Email',\n    text: email,\n  },\n  {\n    label: 'DOB',\n    text: birthDate ? dayjs(birthDate).format('MM/DD/YYYY') : '',\n  },\n  {\n    label: 'Gender',\n    text: gender,\n  },\n  {\n    label: 'Mobile Number',\n    text: mobileNumber,\n  },\n  {\n    label: 'Address Line',\n    text: addressLine,\n  },\n  {\n    label: 'Address City',\n    text: addressCity,\n  },\n  {\n    label: 'Address State',\n    text: addressState,\n  },\n  {\n    label: 'Address Country',\n    text: addressCountry,\n  },\n  {\n    label: 'Address Postal Code',\n    text: addressPostalCode,\n  },\n  {\n    label: 'Slack Username',\n    text: slackUsername,\n  },\n  {\n    label: 'Qualification Code',\n    text: qualificationCode,\n  },\n  {\n    label: 'Qualification Period',\n    text: qualificationPeriod,\n  },\n  {\n    label: 'Telecom Rank',\n    text: telecomRank,\n  },\n  {\n    label: 'Telecom System',\n    text: telecomSystem,\n  },\n  {\n    label: 'Telecom Use',\n    text: telecomUse,\n  },\n  {\n    label: 'Telecom Value',\n    text: telecomValue,\n  },\n  {\n    label: 'Photo',\n    text: photo,\n    multiline: true,\n  },\n];\n",
+                              "returnKey": "itemsList"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "__typename": "Page",
+        "type": "Page",
+        "props": {
+          "paths": ["/cases"],
+          "title": "Cases",
+          "pageIcon": "AssignmentInd",
+          "children": [
+            {
+              "__typename": "PageHeader",
+              "type": "PageHeader",
+              "props": {
+                "title": {
+                  "__typename": "Text",
+                  "type": "Text",
+                  "props": {
+                    "text": "Cases",
+                    "textStyle": "Heading.H3",
+                    "sx": {
+                      "fontWeight": "FontWeight.Regular",
+                      "lineHeight": "LineHeight.M",
+                      "padding": "Global.Spacing.50.value"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "__typename": "Box",
+              "type": "Box",
+              "props": {
+                "sx": {
+                  "backgroundColor": "Global.Neutral.0.value",
+                  "height": "calc(100vh - 165px)"
+                },
+                "children": [
+                  {
+                    "__typename": "Table",
+                    "type": "Table",
+                    "dataPath": "cases.edges",
+                    "state": {
+                      "storage": "nav",
+                      "pathsToPersist": [
+                        "queries.[0].props.variables",
+                        "filterItems",
+                        "filterSet",
+                        "pagination",
+                        "sorting"
+                      ]
+                    },
+                    "props": {
+                      "title": "Cases",
+                      "queries": [
+                        {
+                          "id": "GetCasesQuery",
+                          "props": {
+                            "definition": "query dataQueries__GetCasesQuery($filter: CaseFilter, $first: Int, $offset: Int, $orderBy: [CasesOrderBy!]) { cases( first: $first offset: $offset orderBy: $orderBy filter: $filter ) { totalCount edges { node { id unit accountNumber status score } } } }",
+                            "variables": {
+                              "first": 25,
+                              "orderBy": "CREATED_AT_DESC"
+                            }
+                          }
+                        }
+                      ],
+                      "layout": {
+                        "padding": 2.9
+                      },
+                      "hideColumnsVisibility": false,
+                      "hideVisualDensity": true,
+                      "filters": {
+                        "filtersId": "cases.table.filters",
+                        "enabled": true,
+                        "maxFilterRules": 6
+                      },
+                      "suspense": {
+                        "__typename": "TableSuspense",
+                        "type": "TableSuspense",
+                        "props": {
+                          "height": "100%"
+                        }
+                      },
+                      "columns": [
+                        {
+                          "__typename": "Column",
+                          "type": "Column",
+                          "props": {
+                            "title": "Account Number",
+                            "dataType": "string",
+                            "fieldName": "accountNumber",
+                            "children": [
+                              {
+                                "__typename": "Link",
+                                "type": "Link",
+                                "dataPath": "node.accountNumber",
+                                "props": {
+                                  "transformers": [
+                                    {
+                                      "__typename": "template",
+                                      "type": "template",
+                                      "props": {
+                                        "arguments": {
+                                          "template": "/patient-list/case-detail?id={{data.node.id}}",
+                                          "returnKey": "data.url"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "__typename": "Column",
+                          "type": "Column",
+                          "props": {
+                            "title": "Unit",
+                            "dataType": "string",
+                            "fieldName": "unit",
+                            "children": [
+                              {
+                                "__typename": "Box",
+                                "type": "Box",
+                                "dataPath": "node.unit"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "__typename": "Column",
+                          "type": "Column",
+                          "props": {
+                            "title": "Status",
+                            "dataType": "string",
+                            "fieldName": "status",
+                            "children": [
+                              {
+                                "__typename": "Box",
+                                "type": "Box",
+                                "dataPath": "node.status"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "__typename": "Column",
+                          "type": "Column",
+                          "props": {
+                            "title": "Score",
+                            "dataType": "number",
+                            "fieldName": "score",
+                            "children": [
+                              {
+                                "__typename": "Box",
+                                "type": "Box",
+                                "dataPath": "node.score"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "__typename": "Page",
+        "type": "Page",
+        "props": {
+          "paths": [
+            {
+              "url": "/case-detail",
+              "navigable": false
+            }
+          ],
+          "title": "Case Detail",
+          "queries": [
+            {
+              "id": "CaseDetailQuery",
+              "props": {
+                "definition": "query dataQueries__CaseDetailQuery($caseId: UUID!) { case(id: $caseId) { id accountNumber beginEffectiveDate endEffectiveDate currentOrder drg drgDescription highRiskFactor patient { id givenName familyName mrn } payer recommendations score status unit urlWorkflow } }",
+                "requireVariables": true
+              }
+            }
+          ],
+          "transformers": [
+            {
+              "__typename": "javascript",
+              "type": "javascript",
+              "props": {
+                "arguments": {
+                  "script": "return props?.context?.router?.searchParams?.id;",
+                  "returnKey": "queries[0].props.variables.caseId"
+                }
+              }
+            }
+          ],
+          "children": [
+            {
+              "__typename": "PageHeader",
+              "type": "PageHeader",
+              "props": {
+                "title": {
+                  "__typename": "Text",
+                  "type": "Text",
+                  "props": {
+                    "textStyle": "Heading.H3",
+                    "sx": {
+                      "fontWeight": "FontWeight.Regular",
+                      "lineHeight": "LineHeight.M",
+                      "padding": "Global.Spacing.50.value"
+                    },
+                    "transformers": [
+                      {
+                        "__typename": "template",
+                        "type": "template",
+                        "props": {
+                          "arguments": {
+                            "template": "{{data.case.unit}} ({{data.case.accountNumber}})",
+                            "returnKey": "text"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "__typename": "Box",
+              "type": "Box",
+              "props": {
+                "sx": {
+                  "backgroundColor": "Global.Neutral.0.value",
+                  "minHeight": "100%",
+                  "overflow": "overlay",
+                  "padding": "Global.Spacing.50.value"
+                },
+                "children": [
+                  {
+                    "__typename": "InfoList",
+                    "type": "InfoList",
+                    "props": {
+                      "sx": {
+                        "maxWidth": 568
+                      },
+                      "transformers": [
+                        {
+                          "__typename": "javascript",
+                          "type": "javascript",
+                          "props": {
+                            "arguments": {
+                              "script": "const {\n  id,\n  accountNumber,\n  beginEffectiveDate,\n  endEffectiveDate,\n  currentOrder,\n  drg,\n  drgDescription,\n  highRiskFactor,\n  patient,\n  payer,\n  recommendations,\n  score,\n  status,\n  unit,\n  urlWorkflow,\n} = props.data?.case || {};\nconst {\n  givenName,\n  familyName,\n  mrn,\n} = patient || {};\nif (!id) return [];\nreturn [\n  {\n    label: 'Account Number',\n    text: accountNumber,\n  },\n  {\n    label: 'Begin Effective Date',\n    text: beginEffectiveDate ? dayjs(beginEffectiveDate).format('MM/DD/YYYY') : '',\n  },\n  {\n    label: 'End Effective Date',\n    text: endEffectiveDate ? dayjs(endEffectiveDate).format('MM/DD/YYYY') : '',\n  },\n  {\n    label: 'Current Order',\n    text: currentOrder,\n  },\n  {\n    label: 'DRG',\n    text: drg,\n  },\n  {\n    label: 'DRG Description',\n    text: drgDescription,\n  },\n  {\n    label: 'High Risk Factor',\n    text: highRiskFactor,\n  },\n  {\n    label: 'Patient',\n    text: `${givenName} ${familyName} (${mrn})`,\n  },\n  {\n    label: 'Payer',\n    text: payer,\n  },\n  {\n    label: 'Score',\n    text: score,\n  },\n  {\n    label: 'Status',\n    text: status,\n  },\n  {\n    label: 'Unit',\n    text: unit,\n  },\n  {\n    label: 'Recommendations',\n    text: recommendations,\n    multiline: true,\n  },\n  {\n    label: 'URL Workflow',\n    text: urlWorkflow,\n    multiline: true,\n  },\n];\n",
+                              "returnKey": "itemsList"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
